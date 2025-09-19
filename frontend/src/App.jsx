@@ -17,7 +17,7 @@ function App() {
     setHistory((prev) => [...prev, { sender: "user", text: inp }]);
 
     try {
-      const response = await axios.post("https://your-backend.onrender.com/api/chat/ask", { query: inp });
+      const response = await axios.post("https://bhagavad-gita-chat-bot-2.onrender.com/api/chat/ask", { query: inp });
       const botText = response?.data?.answer || "⚠️ No response from server.";
       setLoading(false);
       setHistory((prev) => [...prev, { sender: "bot", text: botText }]);
