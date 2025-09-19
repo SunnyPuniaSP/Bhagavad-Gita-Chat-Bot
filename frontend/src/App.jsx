@@ -9,14 +9,15 @@ function App() {
 
   const sendMessage = async (e) => {
     e.preventDefault();
+    const inp=input;
     setInput("");
     setLoading(true);
     if (!input.trim()) return;
 
-    setHistory((prev) => [...prev, { sender: "user", text: input }]);
+    setHistory((prev) => [...prev, { sender: "user", text: inp }]);
 
     try {
-      const response = await axios.post("/api/chat/ask", { query: input });
+      const response = await axios.post("/api/chat/ask", { query: inp });
       const botText = response?.data?.answer || "⚠️ No response from server.";
       setLoading(false);
       setHistory((prev) => [...prev, { sender: "bot", text: botText }]);
