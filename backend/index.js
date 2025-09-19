@@ -9,11 +9,11 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Initialize Google Gemini AI
+
 const ai = new GoogleGenAI({ apiKey: process.env.GOOGLE_API_KEY });
 
-// Run AI Agent for a user query
-async function runAgent(userProblem,History) {
+
+async function runAgent(History) {
   const response = await ai.models.generateContent({
     model: "gemini-2.5-flash",
     contents: History,
@@ -46,8 +46,8 @@ You are a wise spiritual guide who answers all questions in the context of the B
 // API route
 app.post("/api/chat/ask", async (req, res) => {
   try {
-    const { query,his } = req.body;
-    const answer = await runAgent(query,his);
+    const { his } = req.body;
+    const answer = await runAgent(his);
     res.json({ answer });
   } catch (err) {
     res.status(500).json({ error: err.message });

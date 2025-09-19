@@ -21,7 +21,7 @@ function App() {
     setHistory(newHistory);
 
     try {
-      const response = await axios.post("https://bhagavad-gita-chat-bot-2.onrender.com/api/chat/ask", { query: inp , his:newHistory});
+      const response = await axios.post("https://bhagavad-gita-chat-bot-2.onrender.com/api/chat/ask", {his:newHistory});
       const botText = response?.data?.answer || "⚠️ No response from server.";
       setLoading(false);
       setHistory((prev) => [...prev, {
