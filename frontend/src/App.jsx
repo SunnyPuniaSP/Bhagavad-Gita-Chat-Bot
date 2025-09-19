@@ -14,19 +14,20 @@ function App() {
     setLoading(true);
     if (!input.trim()) return;
 
-    setHistory((prev) => [...prev, {
-    role: "user",
-    parts: [{ text: inp }],
-  }]);
+    const newHistory = [...history, {
+      role: "user",
+      parts: [{ text: inp }],
+    }];
+    setHistory(newHistory);
 
     try {
-      const response = await axios.post("https://bhagavad-gita-chat-bot-2.onrender.com/api/chat/ask", { query: inp , his:history});
+      const response = await axios.post("https://bhagavad-gita-chat-bot-2.onrender.com/api/chat/ask", { query: inp , his:newHistory});
       const botText = response?.data?.answer || "⚠️ No response from server.";
       setLoading(false);
       setHistory((prev) => [...prev, {
-    role: "bot",
-    parts: [{ text: botText }],
-  }]);
+        role: "bot",
+        parts: [{ text: botText }],
+      }]);
     } catch (error) {
       setHistory((prev) => [
         ...prev,
