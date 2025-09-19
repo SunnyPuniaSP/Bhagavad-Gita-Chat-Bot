@@ -48,6 +48,21 @@ function App() {
         <h1 className="chat-header">🕉️ Bhagavad Gita Chatbot</h1>
 
         <div className="chat-box">
+          {history.length==0 && 
+            <div>
+              <h3><i>Hello! I am a chatbot based on the Bhagavad Gita. You can ask me anything about its teachings.</i></h3>
+              <h4><i>Here are some sample questions you can ask:</i></h4>
+              <p>What is Karma Yoga?</p>
+              <p><i>How can the Gita help me deal with stress and anxiety at work?</i></p>
+              <p><i>I feel overwhelmed by my responsibilities. What does the Gita say about duty?</i></p>
+              <p><i>How can I control my anger and frustration in daily life?</i></p>
+              <p><i>How can I stay focused on my goals and not get distracted?</i></p>
+              <p><i>Explain the concept of Dharma.</i></p>
+              <p><i>Who is Krishna according to the Gita?</i></p>
+              <p><i>What is the importance of detachment?</i></p>
+              <p><i>What is the Gita's advice on dealing with disappointment or failure?</i></p>
+            </div>
+          }
           {history.map((msg, ind) => (
             <div
               key={ind}
