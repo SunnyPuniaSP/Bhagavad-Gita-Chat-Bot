@@ -14,13 +14,19 @@ function App() {
     setLoading(true);
     if (!input.trim()) return;
 
-    setHistory((prev) => [...prev, { sender: "user", text: inp }]);
+    setHistory((prev) => [...prev, {
+    role: "user",
+    parts: [{ text: inp }],
+  }]);
 
     try {
-      const response = await axios.post("https://bhagavad-gita-chat-bot-2.onrender.com/api/chat/ask", { query: inp });
+      const response = await axios.post("https://bhagavad-gita-chat-bot-2.onrender.com/api/chat/ask", { query: inp , his:history});
       const botText = response?.data?.answer || "⚠️ No response from server.";
       setLoading(false);
-      setHistory((prev) => [...prev, { sender: "bot", text: botText }]);
+      setHistory((prev) => [...prev, {
+    role: "bot",
+    parts: [{ text: botText }],
+  }]);
     } catch (error) {
       setHistory((prev) => [
         ...prev,
@@ -39,9 +45,9 @@ function App() {
           {history.map((msg, ind) => (
             <div
               key={ind}
-              className={`chat-message ${msg.sender === "user" ? "user" : "bot"}`}
+              className={`chat-message ${msg.role === "user" ? "user" : "bot"}`}
             >
-              <pre className="chat-text">{msg.text}</pre>
+              <pre className="chat-text">{msg.parts[0].text}</pre>
             </div>
           ))}
           {loading && (

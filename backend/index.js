@@ -14,12 +14,7 @@ const ai = new GoogleGenAI({ apiKey: process.env.GOOGLE_API_KEY });
 const History = [];
 
 // Run AI Agent for a user query
-async function runAgent(userProblem) {
-  History.push({
-    role: "user",
-    parts: [{ text: userProblem }],
-  });
-
+async function runAgent(userProblem,History) {
   const response = await ai.models.generateContent({
     model: "gemini-2.5-flash",
     contents: History,
@@ -43,10 +38,6 @@ Your role is to take any user query or life problem, analyze it, and provide a c
   });
 
   const textResponse = response.text;
-  History.push({
-    role: "model",
-    parts: [{ text: textResponse }],
-  });
 
   return textResponse;
 }
@@ -54,8 +45,8 @@ Your role is to take any user query or life problem, analyze it, and provide a c
 // API route
 app.post("/api/chat/ask", async (req, res) => {
   try {
-    const { query } = req.body;
-    const answer = await runAgent(query);
+    const { query,his } = req.body;
+    const answer = await runAgent(query,his);
     res.json({ answer });
   } catch (err) {
     res.status(500).json({ error: err.message });
