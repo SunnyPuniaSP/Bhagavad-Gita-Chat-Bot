@@ -1,0 +1,148 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 95vh;
+  /* Increase the max-width value to your desired size. */
+  /* For example, 900px or 1200px. */
+  max-width: 900px; 
+  width: 100%;
+  margin: 20px auto 20px auto;
+  background: #f4f6f9;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  border-radius: 12px;
+  overflow: hidden;
+  border-radius: 30px;
+}
+
+.chat-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+.chat-header {
+  background: #2d3748;
+  color: white;
+  padding: 16px;
+  text-align: center;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.chat-box {
+  flex: 1;
+  padding: 15px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: #f9fafb;
+}
+
+.chat-message {
+  max-width: 75%;
+  padding: 14px 18px;
+  border-radius: 16px;
+  line-height: 1.5;
+  word-break: break-word;
+}
+
+.chat-message.user {
+  align-self: flex-end;
+  background: #3182ce;
+  color: white;
+  border-bottom-right-radius: 4px;
+}
+
+.chat-message.bot {
+  align-self: flex-start;
+  background: #fff8dc;
+  color: #1a202c;
+  border-left: 4px solid #f6ad55;
+  border-bottom-left-radius: 4px;
+}
+
+.chat-text {
+  white-space: pre-wrap;
+  font-size: 15px;
+}
+
+.chat-input-container {
+  display: flex;
+  padding: 12px;
+  background: #edf2f7;
+  border-top: 1px solid #ddd;
+  /* Change 'full' to '100%' as 'full' is not a valid CSS value */
+  width: 100%;
+}
+
+.chat-input {
+  flex: 1;
+  padding: 10px 14px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 15px;
+}
+
+.chat-button {
+  margin-left: 10px;
+  margin-right: 20px;
+  padding: 10px 18px;
+  background: #3182ce;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.2s;
+}
+
+.chat-button:hover {
+  background: #2b6cb0;
+}
+
+.loader {
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+.loader .dot {
+  width: 8px;
+  height: 8px;
+  background-color: #3182ce;
+  border-radius: 50%;
+  opacity: 0;
+  animation: fade-in 1.2s infinite;
+}
+
+.loader .dot:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.loader .dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.loader .dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes fade-in {
+  0%, 100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
