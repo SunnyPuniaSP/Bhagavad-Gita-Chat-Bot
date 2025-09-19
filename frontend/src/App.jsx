@@ -29,6 +29,7 @@ function App() {
         parts: [{ text: botText }],
       }]);
     } catch (error) {
+      console.log(error);
       setLoading(false);
       setHistory((prev) => [
         ...prev,
