@@ -11,7 +11,6 @@ app.use(express.json());
 
 // Initialize Google Gemini AI
 const ai = new GoogleGenAI({ apiKey: process.env.GOOGLE_API_KEY });
-const History = [];
 
 // Run AI Agent for a user query
 async function runAgent(userProblem,History) {
