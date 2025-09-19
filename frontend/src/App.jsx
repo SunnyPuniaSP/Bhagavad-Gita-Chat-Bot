@@ -25,14 +25,15 @@ function App() {
       const botText = response?.data?.answer || "⚠️ No response from server.";
       setLoading(false);
       setHistory((prev) => [...prev, {
-        role: "bot",
+        role: "model",
         parts: [{ text: botText }],
       }]);
     } catch (error) {
+      setLoading(false);
       setHistory((prev) => [
         ...prev,
         {
-        role: "bot",
+        role: "model",
         parts: [{ text: "⚠️ Error fetching response." }],
       },
       ]);
