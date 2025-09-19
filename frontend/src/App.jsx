@@ -31,7 +31,10 @@ function App() {
     } catch (error) {
       setHistory((prev) => [
         ...prev,
-        { sender: "bot", text: "⚠️ Error fetching response." },
+        {
+        role: "bot",
+        parts: [{ text: "⚠️ Error fetching response." }],
+      },
       ]);
     }
 
